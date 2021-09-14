@@ -1,10 +1,4 @@
-- 👋 Hi, I’m @rsathish5885
-- 👀 I’m interested in ...
-- 🌱 I’m currently learning ...
-- 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me ... hi sathish
+Getting Started #
+This project is a starting point for a Flutter plug-in package, a specialized package that includes platform-specific implementation code for Android and/or iOS.
 
-<!---
-rsathish5885/rsathish5885 is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+For help getting started with Flutter, view our online documentation, which offers tutorials, samples, guidance on mobile development, and a full API reference.
