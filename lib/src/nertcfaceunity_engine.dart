@@ -294,6 +294,18 @@ class NERtcFaceUnityEngine {
     await _api.setBlurLevel(NEFUDouble()..value = beautyParams.blurLevel);
     await _api.setEyeBright(NEFUDouble()..value = beautyParams.eyeBright);
 
+    await _api.setCheekNarrow(NEFUDouble()..value = beautyParams.cheekNarrow);
+    await _api.setCheekSmall(NEFUDouble()..value = beautyParams.cheekSmall);
+    await _api.setCheekV(NEFUDouble()..value = beautyParams.cheekV);
+    await _api.setChinLevel(NEFUDouble()..value = beautyParams.chinLevel);
+    await _api.setForeHeadLevel(NEFUDouble()..value = beautyParams.foreHeadLevel);
+    await _api.setNoseLevel(NEFUDouble()..value = beautyParams.noseLevel);
+    await _api.setMouthLevel(NEFUDouble()..value = beautyParams.mouthLevel);
+    await _api.setToothWhiten(NEFUDouble()..value = beautyParams.toothWhiten);
+    await _api.setSharpenLevel(NEFUDouble()..value = beautyParams.sharpenLevel);
+    await _api.setBlureType(NEFUDouble()..value = beautyParams.blureType);
+
+
     await _api.setCheekThinning(NEFUDouble()..value = beautyParams.cheekThinning);
     NEFUInt reply = await _api
         .setEyeEnlarging(NEFUDouble()..value = beautyParams.eyeEnlarging);

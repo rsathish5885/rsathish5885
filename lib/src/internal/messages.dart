@@ -40,8 +40,7 @@ class NEFUInt {
 
   static NEFUInt decode(Object message) {
     final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
-    return NEFUInt()
-      ..value = pigeonMap['value'] as int?;
+    return NEFUInt()..value = pigeonMap['value'] as int?;
   }
 }
 
@@ -56,8 +55,7 @@ class NEFUDouble {
 
   static NEFUDouble decode(Object message) {
     final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
-    return NEFUDouble()
-      ..value = pigeonMap['value'] as double?;
+    return NEFUDouble()..value = pigeonMap['value'] as double?;
   }
 }
 
@@ -72,8 +70,7 @@ class NEFUString {
 
   static NEFUString decode(Object message) {
     final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
-    return NEFUString()
-      ..value = pigeonMap['value'] as String?;
+    return NEFUString()..value = pigeonMap['value'] as String?;
   }
 }
 
@@ -118,14 +115,17 @@ class NEFTFaceUnityEngineApi {
   /// Constructor for [NEFTFaceUnityEngineApi].  The [binaryMessenger] named argument is
   /// available for dependency injection.  If it is left null, the default
   /// BinaryMessenger will be used which routes to the host platform.
-  NEFTFaceUnityEngineApi({BinaryMessenger? binaryMessenger}) : _binaryMessenger = binaryMessenger;
+  NEFTFaceUnityEngineApi({BinaryMessenger? binaryMessenger})
+      : _binaryMessenger = binaryMessenger;
 
   final BinaryMessenger? _binaryMessenger;
 
   Future<NEFUInt> create(NECreateFaceUnityRequest arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.create', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.create',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -135,7 +135,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
@@ -149,7 +150,9 @@ class NEFTFaceUnityEngineApi {
   Future<NEFUInt> setFilterLevel(NEFUDouble arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setFilterLevel', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setFilterLevel',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -159,7 +162,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
@@ -173,7 +177,9 @@ class NEFTFaceUnityEngineApi {
   Future<NEFUInt> setFilterName(NEFUString arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setFilterName', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setFilterName',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -183,7 +189,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
@@ -197,7 +204,9 @@ class NEFTFaceUnityEngineApi {
   Future<NEFUInt> setColorLevel(NEFUDouble arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setColorLevel', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setColorLevel',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -207,7 +216,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
@@ -221,7 +231,9 @@ class NEFTFaceUnityEngineApi {
   Future<NEFUInt> setRedLevel(NEFUDouble arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setRedLevel', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setRedLevel',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -231,7 +243,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
@@ -245,7 +258,9 @@ class NEFTFaceUnityEngineApi {
   Future<NEFUInt> setBlurLevel(NEFUDouble arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setBlurLevel', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setBlurLevel',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -255,7 +270,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
@@ -269,7 +285,9 @@ class NEFTFaceUnityEngineApi {
   Future<NEFUInt> setEyeEnlarging(NEFUDouble arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setEyeEnlarging', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setEyeEnlarging',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -279,7 +297,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
@@ -293,7 +312,9 @@ class NEFTFaceUnityEngineApi {
   Future<NEFUInt> setCheekThinning(NEFUDouble arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setCheekThinning', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setCheekThinning',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -303,7 +324,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
@@ -317,7 +339,9 @@ class NEFTFaceUnityEngineApi {
   Future<NEFUInt> setEyeBright(NEFUDouble arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setEyeBright', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setEyeBright',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -327,7 +351,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
@@ -343,7 +368,9 @@ class NEFTFaceUnityEngineApi {
   Future<NEFUInt> setCheekNarrow(NEFUDouble arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setCheekNarrow', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setCheekNarrow',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -353,7 +380,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
@@ -367,7 +395,9 @@ class NEFTFaceUnityEngineApi {
   Future<NEFUInt> setCheekSmall(NEFUDouble arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setCheekSmall', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setCheekSmall',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -377,7 +407,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
@@ -391,7 +422,9 @@ class NEFTFaceUnityEngineApi {
   Future<NEFUInt> setCheekV(NEFUDouble arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setCheekV', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setCheekV',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -401,7 +434,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
@@ -415,7 +449,9 @@ class NEFTFaceUnityEngineApi {
   Future<NEFUInt> setChinLevel(NEFUDouble arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setChinLevel', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setChinLevel',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -425,7 +461,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
@@ -439,7 +476,9 @@ class NEFTFaceUnityEngineApi {
   Future<NEFUInt> setForeHeadLevel(NEFUDouble arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setForeHeadLevel', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setForeHeadLevel',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -449,7 +488,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
@@ -463,7 +503,9 @@ class NEFTFaceUnityEngineApi {
   Future<NEFUInt> setNoseLevel(NEFUDouble arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setNoseLevel', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setNoseLevel',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -473,7 +515,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
@@ -487,7 +530,9 @@ class NEFTFaceUnityEngineApi {
   Future<NEFUInt> setMouthLevel(NEFUDouble arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setMouthLevel', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setMouthLevel',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -497,7 +542,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
@@ -511,7 +557,9 @@ class NEFTFaceUnityEngineApi {
   Future<NEFUInt> setToothWhiten(NEFUDouble arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setToothWhiten', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setToothWhiten',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -521,7 +569,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
@@ -535,7 +584,9 @@ class NEFTFaceUnityEngineApi {
   Future<NEFUInt> setSharpenLevel(NEFUDouble arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setSharpenLevel', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setSharpenLevel',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -545,7 +596,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
@@ -559,7 +611,9 @@ class NEFTFaceUnityEngineApi {
   Future<NEFUInt> setBlureType(NEFUDouble arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setBlureType', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setBlureType',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -569,7 +623,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
@@ -580,11 +635,12 @@ class NEFTFaceUnityEngineApi {
     }
   }
 
-
   Future<NEFUInt> setMultiFUParams(SetFaceUnityParamsRequest arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setMultiFUParams', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setMultiFUParams',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(encoded) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -594,7 +650,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
@@ -607,7 +664,9 @@ class NEFTFaceUnityEngineApi {
 
   Future<NEFUInt> release() async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.release', const StandardMessageCodec(), binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.release',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(null) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -617,7 +676,8 @@ class NEFTFaceUnityEngineApi {
         details: null,
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,
