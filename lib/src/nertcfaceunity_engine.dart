@@ -26,6 +26,18 @@ class NEFaceUnityParams {
 
   /// 瘦脸
   double cheekThinning;
+  //my code
+  double cheekNarrow;
+  double cheekSmall;
+  double cheekV;
+  double chinLevel;
+  double foreHeadLevel;
+  double noseLevel;
+  double mouthLevel;
+  double toothWhiten;
+  double sharpenLevel;
+  double blureType;
+
 
   NEFaceUnityParams({
     this.filterLevel = 0,
@@ -36,6 +48,16 @@ class NEFaceUnityParams {
     this.eyeBright = 0,
     this.eyeEnlarging = 0,
     this.cheekThinning = 0,
+    this.cheekNarrow = 0,
+    this.cheekSmall = 0,
+    this.cheekV = 0,
+    this.chinLevel = 0,
+    this.foreHeadLevel = 0,
+    this.noseLevel = 0,
+    this.mouthLevel = 0,
+    this.toothWhiten = 0,
+    this.sharpenLevel = 0,
+    this.blureType = 0,
   });
 }
 
@@ -196,6 +218,60 @@ class NERtcFaceUnityEngine {
     NEFUInt reply = await _api.setEyeBright(NEFUDouble()..value = eyeBright);
     return reply.value ?? -1;
   }
+
+  //mycode
+
+  Future<int> setCheekNarrow(double cheekNarrow) async {
+    NEFUInt reply =
+        await _api.setCheekNarrow(NEFUDouble()..value = cheekNarrow);
+    return reply.value ?? -1;
+  }
+  Future<int> setCheekSmall(double cheekSmall) async {
+    NEFUInt reply =
+        await _api.setCheekSmall(NEFUDouble()..value = cheekSmall);
+    return reply.value ?? -1;
+  }
+  Future<int> setCheekV(double cheekV) async {
+    NEFUInt reply =
+        await _api.setCheekV(NEFUDouble()..value = cheekV);
+    return reply.value ?? -1;
+  }
+  Future<int> setChinLevel(double chinLevel) async {
+    NEFUInt reply =
+        await _api.setChinLevel(NEFUDouble()..value = chinLevel);
+    return reply.value ?? -1;
+  }
+  Future<int> setForeHeadLevel(double foreHeadLevel) async {
+    NEFUInt reply =
+        await _api.setForeHeadLevel(NEFUDouble()..value = foreHeadLevel);
+    return reply.value ?? -1;
+  }
+  Future<int> setNoseLevel(double noseLevel) async {
+    NEFUInt reply =
+        await _api.setNoseLevel(NEFUDouble()..value = noseLevel);
+    return reply.value ?? -1;
+  }
+  Future<int> setMouthLevel(double mouthLevel) async {
+    NEFUInt reply =
+        await _api.setMouthLevel(NEFUDouble()..value = mouthLevel);
+    return reply.value ?? -1;
+  }
+  Future<int> setToothWhiten(double toothWhiten) async {
+    NEFUInt reply =
+        await _api.setToothWhiten(NEFUDouble()..value = toothWhiten);
+    return reply.value ?? -1;
+  }
+  Future<int> setSharpenLevel(double sharpenLevel) async {
+    NEFUInt reply =
+        await _api.setSharpenLevel(NEFUDouble()..value = sharpenLevel);
+    return reply.value ?? -1;
+  }
+  Future<int> setBlureType(double blureType) async {
+    NEFUInt reply =
+        await _api.setBlureType(NEFUDouble()..value = blureType);
+    return reply.value ?? -1;
+  }
+
 
   ///设置美颜参数
   ///

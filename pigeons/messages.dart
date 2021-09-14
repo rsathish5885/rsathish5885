@@ -1,6 +1,4 @@
-
 import 'package:pigeon/pigeon.dart';
-
 
 class NECreateFaceUnityRequest {
   Uint8List? beautyKey;
@@ -11,12 +9,15 @@ class NECreateFaceUnityRequest {
 class NEFUInt {
   int? value;
 }
+
 class NEFUDouble {
   double? value;
 }
+
 class NEFUString {
   String? value;
 }
+
 class SetFaceUnityParamsRequest {
   double? filterLevel;
   double? colorLevel;
@@ -25,6 +26,17 @@ class SetFaceUnityParamsRequest {
   double? eyeBright;
   double? eyeEnlarging;
   double? cheekThinning;
+  //mycode
+  double? cheekNarrow;
+  double? cheekSmall;
+  double? cheekV;
+  double? chinLevel;
+  double? foreHeadLevel;
+  double? noseLevel;
+  double? mouthLevel;
+  double? toothWhiten;
+  double? sharpenLevel;
+  double? blureType;
   String? filterName;
 }
 
@@ -47,6 +59,26 @@ abstract class NEFTFaceUnityEngineApi {
   NEFUInt setCheekThinning(NEFUDouble cheekThinning);
 
   NEFUInt setEyeBright(NEFUDouble eyeBright);
+
+  NEFUInt setCheekNarrow(NEFUDouble cheekNarrow);
+
+  NEFUInt setCheekSmall(NEFUDouble cheekSmall);
+
+  NEFUInt setCheekV(NEFUDouble cheekV);
+
+  NEFUInt setChinLevel(NEFUDouble chinLevel);
+
+  NEFUInt setForeHeadLevel(NEFUDouble foreHeadLevel);
+
+  NEFUInt setNoseLevel(NEFUDouble noseLevel);
+
+  NEFUInt setMouthLevel(NEFUDouble mouthLevel);
+
+  NEFUInt setToothWhiten(NEFUDouble toothWhiten);
+
+  NEFUInt setSharpenLevel(NEFUDouble sharpenLevel);
+  
+  NEFUInt setBlureType(NEFUDouble blureType);
 
   NEFUInt setMultiFUParams(SetFaceUnityParamsRequest request);
 
