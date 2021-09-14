@@ -1,0 +1,62 @@
+PODS:
+  - Flutter (1.0.0)
+  - Nama-lite (7.3.2)
+  - NEDyldYuv (0.0.1)
+  - nertc (0.0.1):
+    - Flutter
+    - NEDyldYuv (= 0.0.1)
+    - NERtcSDK (= 4.1.1)
+  - nertc_faceunity (0.0.1):
+    - Flutter
+    - Nama-lite (= 7.3.2)
+    - nertc
+  - NERtcSDK (4.1.1)
+  - package_info (0.0.1):
+    - Flutter
+  - "permission_handler (5.1.0+2)":
+    - Flutter
+  - shared_preferences (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - nertc (from `.symlinks/plugins/nertc/ios`)
+  - nertc_faceunity (from `.symlinks/plugins/nertc_faceunity/ios`)
+  - package_info (from `.symlinks/plugins/package_info/ios`)
+  - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
+  - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
+
+SPEC REPOS:
+  trunk:
+    - Nama-lite
+    - NEDyldYuv
+    - NERtcSDK
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  nertc:
+    :path: ".symlinks/plugins/nertc/ios"
+  nertc_faceunity:
+    :path: ".symlinks/plugins/nertc_faceunity/ios"
+  package_info:
+    :path: ".symlinks/plugins/package_info/ios"
+  permission_handler:
+    :path: ".symlinks/plugins/permission_handler/ios"
+  shared_preferences:
+    :path: ".symlinks/plugins/shared_preferences/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  Nama-lite: 735c7271288664120d3dca3f38418925710e11c2
+  NEDyldYuv: 6b47adff16186768bf2f8b165697fdee8e94d7ac
+  nertc: af943f49b14898846a3c440302ff19c95a61a282
+  nertc_faceunity: 4e9cee8827926b3f0a8139df2506c974cd27ae65
+  NERtcSDK: 51875e4737db9958d7e2ff3a7d2e9b8b1b9dfc9c
+  package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
+  permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
+  shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
+
+PODFILE CHECKSUM: fa03b1cf23683cf3c8e74c06301f8b016a0005e0
+
+COCOAPODS: 1.10.1
