@@ -138,6 +138,48 @@ public class Messages {
     public String getFilterName() { return filterName; }
     public void setFilterName(String setterArg) { this.filterName = setterArg; }
 
+    //My code
+
+    private Double cheekNarrow;
+    public Double getCheekNarrow() { return cheekNarrow; }
+    public void setCheekNarrow(Double setterArg) { this.cheekNarrow = setterArg; }
+
+    private Double cheekSmall;
+    public Double getCheekSmall() { return cheekSmall; }
+    public void setCheekSmall(Double setterArg) { this.cheekSmall = setterArg; }
+
+    private Double cheekV;
+    public Double getCheekV() { return cheekV; }
+    public void setCheekV(Double setterArg) { this.cheekV = setterArg; }
+
+    private Double chinLevel;
+    public Double getChinLevel() { return chinLevel; }
+    public void setChinLevel(Double setterArg) { this.chinLevel = setterArg; }
+
+    private Double foreHeadLevel;
+    public Double getForeHeadLevel() { return foreHeadLevel; }
+    public void setForeHeadLevel(Double setterArg) { this.foreHeadLevel = setterArg; }
+
+    private Double noseLevel;
+    public Double getNoseLevel() { return noseLevel; }
+    public void setNoseLevel(Double setterArg) { this.noseLevel = setterArg; }
+
+    private Double mouthLevel;
+    public Double getMouthLevel() { return mouthLevel; }
+    public void setMouthLevel(Double setterArg) { this.mouthLevel = setterArg; }
+
+    private Double toothWhiten;
+    public Double getToothWhiten() { return toothWhiten; }
+    public void setToothWhiten(Double setterArg) { this.toothWhiten = setterArg; }
+
+    private Double sharpenLevel;
+    public Double getSharpenLevel() { return sharpenLevel; }
+    public void setSharpenLevel(Double setterArg) { this.sharpenLevel = setterArg; }
+
+    private Double blureType;
+    public Double getBlureType() { return blureType; }
+    public void setBlureType(Double setterArg) { this.blureType = setterArg; }
+
     Map<String, Object> toMap() {
       Map<String, Object> toMapResult = new HashMap<>();
       toMapResult.put("filterLevel", filterLevel);
@@ -148,6 +190,17 @@ public class Messages {
       toMapResult.put("eyeEnlarging", eyeEnlarging);
       toMapResult.put("cheekThinning", cheekThinning);
       toMapResult.put("filterName", filterName);
+      //My code
+      toMapResult.put("cheekNarrow", cheekNarrow);
+      toMapResult.put("cheekSmall", cheekSmall);
+      toMapResult.put("cheekV", cheekV);
+      toMapResult.put("chinLevel", chinLevel);
+      toMapResult.put("foreHeadLevel", foreHeadLevel);
+      toMapResult.put("noseLevel", noseLevel);
+      toMapResult.put("mouthLevel", mouthLevel);
+      toMapResult.put("toothWhiten", toothWhiten);
+      toMapResult.put("sharpenLevel", sharpenLevel);
+      toMapResult.put("blureType", blureType);
       return toMapResult;
     }
     static SetFaceUnityParamsRequest fromMap(Map<String, Object> map) {
@@ -168,6 +221,27 @@ public class Messages {
       fromMapResult.cheekThinning = (Double)cheekThinning;
       Object filterName = map.get("filterName");
       fromMapResult.filterName = (String)filterName;
+      //My code
+      Object cheekNarrow = map.get("cheekNarrow");
+      fromMapResult.cheekNarrow = (Double)cheekNarrow;
+      Object cheekSmall = map.get("cheekSmall");
+      fromMapResult.cheekSmall = (Double)cheekSmall;
+      Object cheekV = map.get("cheekV");
+      fromMapResult.cheekV = (Double)cheekV;
+      Object chinLevel = map.get("chinLevel");
+      fromMapResult.chinLevel = (Double)chinLevel;
+      Object foreHeadLevel = map.get("foreHeadLevel");
+      fromMapResult.foreHeadLevel = (Double)foreHeadLevel;
+      Object noseLevel = map.get("noseLevel");
+      fromMapResult.noseLevel = (Double)noseLevel;
+      Object mouthLevel = map.get("mouthLevel");
+      fromMapResult.mouthLevel = (Double)mouthLevel;
+      Object toothWhiten = map.get("toothWhiten");
+      fromMapResult.toothWhiten = (Double)toothWhiten;
+      Object sharpenLevel = map.get("sharpenLevel");
+      fromMapResult.sharpenLevel = (Double)sharpenLevel;
+      Object blureType = map.get("blureType");
+      fromMapResult.blureType = (Double)blureType;
       return fromMapResult;
     }
   }
@@ -185,6 +259,17 @@ public class Messages {
     NEFUInt setEyeBright(NEFUDouble arg);
     NEFUInt setMultiFUParams(SetFaceUnityParamsRequest arg);
     NEFUInt release();
+    //My Code
+    NEFUInt setCheekNarrow(NEFUDouble arg);
+    NEFUInt setCheekSmall(NEFUDouble arg);
+    NEFUInt setCheekV(NEFUDouble arg);
+    NEFUInt setChinLevel(NEFUDouble arg);
+    NEFUInt setForeHeadLevel(NEFUDouble arg);
+    NEFUInt setNoseLevel(NEFUDouble arg);
+    NEFUInt setMouthLevel(NEFUDouble arg);
+    NEFUInt setToothWhiten(NEFUDouble arg);
+    NEFUInt setSharpenLevel(NEFUDouble arg);
+    NEFUInt setBlureType(NEFUDouble arg);
 
     /** Sets up an instance of `NEFTFaceUnityEngineApi` to handle messages through the `binaryMessenger`. */
     static void setup(BinaryMessenger binaryMessenger, NEFTFaceUnityEngineApi api) {
@@ -417,7 +502,218 @@ public class Messages {
           channel.setMessageHandler(null);
         }
       }
-    }
+      //My code
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.NEFTFaceUnityEngineApi.setCheekNarrow", new StandardMessageCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              @SuppressWarnings("ConstantConditions")
+              NEFUDouble input = NEFUDouble.fromMap((Map<String, Object>)message);
+              NEFUInt output = api.setCheekNarrow(input);
+              wrapped.put("result", output.toMap());
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.NEFTFaceUnityEngineApi.setCheekSmall", new StandardMessageCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              @SuppressWarnings("ConstantConditions")
+              NEFUDouble input = NEFUDouble.fromMap((Map<String, Object>)message);
+              NEFUInt output = api.setCheekSmall(input);
+              wrapped.put("result", output.toMap());
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.NEFTFaceUnityEngineApi.setCheekV", new StandardMessageCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              @SuppressWarnings("ConstantConditions")
+              NEFUDouble input = NEFUDouble.fromMap((Map<String, Object>)message);
+              NEFUInt output = api.setCheekV(input);
+              wrapped.put("result", output.toMap());
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.NEFTFaceUnityEngineApi.setChinLevel", new StandardMessageCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              @SuppressWarnings("ConstantConditions")
+              NEFUDouble input = NEFUDouble.fromMap((Map<String, Object>)message);
+              NEFUInt output = api.setChinLevel(input);
+              wrapped.put("result", output.toMap());
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.NEFTFaceUnityEngineApi.setForeHeadLevel", new StandardMessageCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              @SuppressWarnings("ConstantConditions")
+              NEFUDouble input = NEFUDouble.fromMap((Map<String, Object>)message);
+              NEFUInt output = api.setForeHeadLevel(input);
+              wrapped.put("result", output.toMap());
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.NEFTFaceUnityEngineApi.setNoseLevel", new StandardMessageCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              @SuppressWarnings("ConstantConditions")
+              NEFUDouble input = NEFUDouble.fromMap((Map<String, Object>)message);
+              NEFUInt output = api.setNoseLevel(input);
+              wrapped.put("result", output.toMap());
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.NEFTFaceUnityEngineApi.setMouthLevel", new StandardMessageCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              @SuppressWarnings("ConstantConditions")
+              NEFUDouble input = NEFUDouble.fromMap((Map<String, Object>)message);
+              NEFUInt output = api.setMouthLevel(input);
+              wrapped.put("result", output.toMap());
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.NEFTFaceUnityEngineApi.setToothWhiten", new StandardMessageCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              @SuppressWarnings("ConstantConditions")
+              NEFUDouble input = NEFUDouble.fromMap((Map<String, Object>)message);
+              NEFUInt output = api.setToothWhiten(input);
+              wrapped.put("result", output.toMap());
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.NEFTFaceUnityEngineApi.setSharpenLevel", new StandardMessageCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              @SuppressWarnings("ConstantConditions")
+              NEFUDouble input = NEFUDouble.fromMap((Map<String, Object>)message);
+              NEFUInt output = api.setSharpenLevel(input);
+              wrapped.put("result", output.toMap());
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.NEFTFaceUnityEngineApi.setBlureType", new StandardMessageCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              @SuppressWarnings("ConstantConditions")
+              NEFUDouble input = NEFUDouble.fromMap((Map<String, Object>)message);
+              NEFUInt output = api.setBlureType(input);
+              wrapped.put("result", output.toMap());
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+   }
   }
   private static Map<String, Object> wrapError(Throwable exception) {
     Map<String, Object> errorMap = new HashMap<>();

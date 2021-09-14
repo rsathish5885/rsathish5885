@@ -154,6 +154,127 @@ public class NERtcFaceUnityFlutterPlugin implements FlutterPlugin, Messages.NEFT
         }
         return result;
     }
+    //My code
+
+    @Override
+    public Messages.NEFUInt setCheekNarrow(Messages.NEFUDouble arg) {
+        Messages.NEFUInt result = new Messages.NEFUInt();
+        if (mFuRender != null && FURenderer.isLibInit()) {
+            mFuRender.onCheekNarrowSelected(arg.getValue().floatValue());
+            result.setValue(0L);
+        } else {
+            result.setValue(-1L);
+        }
+        return result;
+    }
+
+    @Override
+    public Messages.NEFUInt setCheekSmall(Messages.NEFUDouble arg) {
+        Messages.NEFUInt result = new Messages.NEFUInt();
+        if (mFuRender != null && FURenderer.isLibInit()) {
+            mFuRender.onCheekSmallSelected(arg.getValue().floatValue());
+            result.setValue(0L);
+        } else {
+            result.setValue(-1L);
+        }
+        return result;
+    }
+
+    @Override
+    public Messages.NEFUInt setCheekV(Messages.NEFUDouble arg) {
+        Messages.NEFUInt result = new Messages.NEFUInt();
+        if (mFuRender != null && FURenderer.isLibInit()) {
+            mFuRender.onCheekVSelected(arg.getValue().floatValue());
+            result.setValue(0L);
+        } else {
+            result.setValue(-1L);
+        }
+        return result;
+    }
+
+    @Override
+    public Messages.NEFUInt setChinLevel(Messages.NEFUDouble arg) {
+        Messages.NEFUInt result = new Messages.NEFUInt();
+        if (mFuRender != null && FURenderer.isLibInit()) {
+            mFuRender.onIntensityChinSelected(arg.getValue().floatValue());
+            result.setValue(0L);
+        } else {
+            result.setValue(-1L);
+        }
+        return result;
+    }
+
+    @Override
+    public Messages.NEFUInt setForeHeadLevel(Messages.NEFUDouble arg) {
+        Messages.NEFUInt result = new Messages.NEFUInt();
+        if (mFuRender != null && FURenderer.isLibInit()) {
+            mFuRender.onIntensityForeheadSelected(arg.getValue().floatValue());
+            result.setValue(0L);
+        } else {
+            result.setValue(-1L);
+        }
+        return result;
+    }
+
+    @Override
+    public Messages.NEFUInt setNoseLevel(Messages.NEFUDouble arg) {
+        Messages.NEFUInt result = new Messages.NEFUInt();
+        if (mFuRender != null && FURenderer.isLibInit()) {
+            mFuRender.onIntensityNoseSelected(arg.getValue().floatValue());
+            result.setValue(0L);
+        } else {
+            result.setValue(-1L);
+        }
+        return result;
+    }
+
+    @Override
+    public Messages.NEFUInt setMouthLevel(Messages.NEFUDouble arg) {
+        Messages.NEFUInt result = new Messages.NEFUInt();
+        if (mFuRender != null && FURenderer.isLibInit()) {
+            mFuRender.onIntensityMouthSelected(arg.getValue().floatValue());
+            result.setValue(0L);
+        } else {
+            result.setValue(-1L);
+        }
+        return result;
+    }
+
+    @Override
+    public Messages.NEFUInt setToothWhiten(Messages.NEFUDouble arg) {
+        Messages.NEFUInt result = new Messages.NEFUInt();
+        if (mFuRender != null && FURenderer.isLibInit()) {
+            mFuRender.onToothWhitenSelected(arg.getValue().floatValue());
+            result.setValue(0L);
+        } else {
+            result.setValue(-1L);
+        }
+        return result;
+    }
+
+    @Override
+    public Messages.NEFUInt setSharpenLevel(Messages.NEFUDouble arg) {
+        Messages.NEFUInt result = new Messages.NEFUInt();
+        if (mFuRender != null && FURenderer.isLibInit()) {
+            mFuRender.onSharpenLevelSelected(arg.getValue().floatValue());
+            result.setValue(0L);
+        } else {
+            result.setValue(-1L);
+        }
+        return result;
+    }
+
+    @Override
+    public Messages.NEFUInt setBlureType(Messages.NEFUDouble arg) {
+        Messages.NEFUInt result = new Messages.NEFUInt();
+        if (mFuRender != null && FURenderer.isLibInit()) {
+            mFuRender.onBlurTypeSelected(arg.getValue().floatValue());
+            result.setValue(0L);
+        } else {
+            result.setValue(-1L);
+        }
+        return result;
+    }
 
     private boolean initFUBeauty(byte[] beautyKey) {
          FURenderer.initFURenderer(context, beautyKey);
