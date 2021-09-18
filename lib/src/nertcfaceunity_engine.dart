@@ -41,7 +41,7 @@ class NEFaceUnityParams {
 
 
   NEFaceUnityParams({
-    this.isBeautyOn = 0,
+    this.isBeautyOn = true,
     this.filterLevel = 0,
     this.filterName = origin,
     this.colorLevel = 0,
