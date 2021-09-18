@@ -264,7 +264,7 @@ public class Messages {
     NEFUInt setCheekThinning(NEFUDouble arg);
     NEFUInt setEyeBright(NEFUDouble arg);
     NEFUInt setMultiFUParams(SetFaceUnityParamsRequest arg);
-    NEFUInt release();
+    
     //My Code
     NEFUInt setIsBeautyOn(NEFUDouble arg);
     NEFUInt setCheekNarrow(NEFUDouble arg);
@@ -277,6 +277,9 @@ public class Messages {
     NEFUInt setToothWhiten(NEFUDouble arg);
     NEFUInt setSharpenLevel(NEFUDouble arg);
     NEFUInt setBlureType(NEFUDouble arg);
+    //My code end
+    
+    NEFUInt release();
 
     /** Sets up an instance of `NEFTFaceUnityEngineApi` to handle messages through the `binaryMessenger`. */
     static void setup(BinaryMessenger binaryMessenger, NEFTFaceUnityEngineApi api) {
