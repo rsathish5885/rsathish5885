@@ -139,6 +139,9 @@ public class Messages {
     public void setFilterName(String setterArg) { this.filterName = setterArg; }
 
     //My code
+     private Double isBeautyOn;
+    public Double getIsBeautyOn() { return isBeautyOn; }
+    public void setIsBeautyOn(Double setterArg) { this.isBeautyOn = setterArg; }
 
     private Double cheekNarrow;
     public Double getCheekNarrow() { return cheekNarrow; }
@@ -191,6 +194,7 @@ public class Messages {
       toMapResult.put("cheekThinning", cheekThinning);
       toMapResult.put("filterName", filterName);
       //My code
+      toMapResult.put("isBeautyOn", isBeautyOn);
       toMapResult.put("cheekNarrow", cheekNarrow);
       toMapResult.put("cheekSmall", cheekSmall);
       toMapResult.put("cheekV", cheekV);
@@ -222,6 +226,8 @@ public class Messages {
       Object filterName = map.get("filterName");
       fromMapResult.filterName = (String)filterName;
       //My code
+      Object isBeautyOn = map.get("isBeautyOn");
+      fromMapResult.isBeautyOn = (Double)isBeautyOn;
       Object cheekNarrow = map.get("cheekNarrow");
       fromMapResult.cheekNarrow = (Double)cheekNarrow;
       Object cheekSmall = map.get("cheekSmall");
@@ -260,6 +266,7 @@ public class Messages {
     NEFUInt setMultiFUParams(SetFaceUnityParamsRequest arg);
     NEFUInt release();
     //My Code
+    NEFUInt setIsBeautyOn(NEFUDouble arg);
     NEFUInt setCheekNarrow(NEFUDouble arg);
     NEFUInt setCheekSmall(NEFUDouble arg);
     NEFUInt setCheekV(NEFUDouble arg);
@@ -503,6 +510,27 @@ public class Messages {
         }
       }
       //My code
+          {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.NEFTFaceUnityEngineApi.setIsBeautyOn", new StandardMessageCodec());
+        if (api != null) {
+          channel.setMessageHandler((message, reply) -> {
+            Map<String, Object> wrapped = new HashMap<>();
+            try {
+              @SuppressWarnings("ConstantConditions")
+              NEFUDouble input = NEFUDouble.fromMap((Map<String, Object>)message);
+              NEFUInt output = api.setCheekNarrow(input);
+              wrapped.put("result", output.toMap());
+            }
+            catch (Error | RuntimeException exception) {
+              wrapped.put("error", wrapError(exception));
+            }
+            reply.reply(wrapped);
+          });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
       {
         BasicMessageChannel<Object> channel =
             new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.NEFTFaceUnityEngineApi.setCheekNarrow", new StandardMessageCodec());

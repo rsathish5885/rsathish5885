@@ -155,6 +155,17 @@ public class NERtcFaceUnityFlutterPlugin implements FlutterPlugin, Messages.NEFT
         return result;
     }
     //My code
+      @Override
+    public Messages.NEFUInt setIsBeautyOn(Messages.NEFUDouble arg) {
+        Messages.NEFUInt result = new Messages.NEFUInt();
+        if (mFuRender != null && FURenderer.isLibInit()) {
+            mFuRender.setBeautificationOn(arg.getValue().floatValue());
+            result.setValue(0L);
+        } else {
+            result.setValue(-1L);
+        }
+        return result;
+    }
 
     @Override
     public Messages.NEFUInt setCheekNarrow(Messages.NEFUDouble arg) {
