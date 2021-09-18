@@ -74,7 +74,8 @@ class NEFUString {
   }
 }
 
-class SetFaceUnityParamsRequest {
+class SetFaceUnityParamsRequest {  
+  double? isBeautyOn;
   double? filterLevel;
   double? colorLevel;
   double? redLevel;
@@ -86,6 +87,7 @@ class SetFaceUnityParamsRequest {
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['isBeautyOn'] = isBeautyOn;
     pigeonMap['filterLevel'] = filterLevel;
     pigeonMap['colorLevel'] = colorLevel;
     pigeonMap['redLevel'] = redLevel;
@@ -100,6 +102,7 @@ class SetFaceUnityParamsRequest {
   static SetFaceUnityParamsRequest decode(Object message) {
     final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
     return SetFaceUnityParamsRequest()
+      ..isBeautyOn = pigeonMap['isBeautyOn'] as double?
       ..filterLevel = pigeonMap['filterLevel'] as double?
       ..colorLevel = pigeonMap['colorLevel'] as double?
       ..redLevel = pigeonMap['redLevel'] as double?
@@ -363,7 +366,34 @@ class NEFTFaceUnityEngineApi {
     }
   }
 
-//mycode
+//mycode 
+ Future<NEFUInt> setIsBeautyOn(NEFUDouble arg) async {
+    final Object encoded = arg.encode();
+    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setIsBeautyOn',
+        const StandardMessageCodec(),
+        binaryMessenger: _binaryMessenger);
+    final Map<Object?, Object?>? replyMap =
+        await channel.send(encoded) as Map<Object?, Object?>?;
+    if (replyMap == null) {
+      throw PlatformException(
+        code: 'channel-error',
+        message: 'Unable to establish connection on channel.',
+        details: null,
+      );
+    } else if (replyMap['error'] != null) {
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
+      throw PlatformException(
+        code: (error['code'] as String?)!,
+        message: error['message'] as String?,
+        details: error['details'],
+      );
+    } else {
+      return NEFUInt.decode(replyMap['result']!);
+    }
+  }
+
 
   Future<NEFUInt> setCheekNarrow(NEFUDouble arg) async {
     final Object encoded = arg.encode();

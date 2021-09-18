@@ -26,7 +26,8 @@ class SetFaceUnityParamsRequest {
   double? eyeBright;
   double? eyeEnlarging;
   double? cheekThinning;
-  //mycode
+  //mycode isBeautyOn
+  double? isBeautyOn;
   double? cheekNarrow;
   double? cheekSmall;
   double? cheekV;
@@ -43,6 +44,8 @@ class SetFaceUnityParamsRequest {
 @HostApi()
 abstract class NEFTFaceUnityEngineApi {
   NEFUInt create(NECreateFaceUnityRequest request);
+
+  NEFUInt setIsBeautyOn(NEFUDouble isBeautyOn);
 
   NEFUInt setFilterLevel(NEFUDouble filterLevel);
 
