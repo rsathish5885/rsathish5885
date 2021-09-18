@@ -27,7 +27,7 @@ class NEFaceUnityParams {
   /// 瘦脸
   double cheekThinning;
   //my code
-  double isBeautyOn;
+  bool isBeautyOn;
   double cheekNarrow;
   double cheekSmall;
   double cheekV;
@@ -222,10 +222,10 @@ class NERtcFaceUnityEngine {
   }
 
   //mycode isBeautyOn
- Future<int> setIsBeautyOn(double isBeautyOn) async {
-    NEFUInt reply =
-        await _api.setIsBeautyOn(NEFUDouble()..value = isBeautyOn);
-    return reply.value ?? -1;
+ Future<bool> setIsBeautyOn(bool isBeautyOn) async {
+    NEFUBool reply =
+        await _api.setIsBeautyOn(NEFUBool()..value = isBeautyOn);
+    return reply.value ?? true;
   }
 
   Future<int> setCheekNarrow(double cheekNarrow) async {
@@ -294,7 +294,7 @@ class NERtcFaceUnityEngine {
     //   ..blurLevel = beautyParams.blurLevel
     //   ..eyeBright = beautyParams.eyeBright);
 
-    await _api.setIsBeautyOn(NEFUString()..value = beautyParams.isBeautyOn);
+    await _api.setIsBeautyOn(NEFUBool()..value = beautyParams.isBeautyOn);
     await _api.setFilterName(NEFUString()..value = beautyParams.filterName);
     await _api.setFilterLevel(NEFUDouble()..value = beautyParams.filterLevel);
     await _api.setColorLevel(NEFUDouble()..value = beautyParams.colorLevel);

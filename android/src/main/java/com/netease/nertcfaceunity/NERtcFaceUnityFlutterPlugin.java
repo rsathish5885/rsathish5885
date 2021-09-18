@@ -156,13 +156,13 @@ public class NERtcFaceUnityFlutterPlugin implements FlutterPlugin, Messages.NEFT
     }
     //My code
       @Override
-    public Messages.NEFUInt setIsBeautyOn(Messages.NEFUDouble arg) {
-        Messages.NEFUInt result = new Messages.NEFUInt();
+    public Messages.NEFUBool setIsBeautyOn(Messages.NEFUBool arg) {
+        Messages.NEFUBool result = new Messages.NEFUBool();
         if (mFuRender != null && FURenderer.isLibInit()) {
-            mFuRender.setBeautificationOn(arg.getValue().floatValue());
-            result.setValue(0L);
+            mFuRender.setBeautificationOn(arg.getValue());
+            result.setValue(true);
         } else {
-            result.setValue(-1L);
+            result.setValue(false);
         }
         return result;
     }

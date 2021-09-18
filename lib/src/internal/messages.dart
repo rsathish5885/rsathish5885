@@ -59,6 +59,21 @@ class NEFUDouble {
   }
 }
 
+class NEFUBool {
+  bool? value;
+
+  Object encode() {
+    final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
+    pigeonMap['value'] = value;
+    return pigeonMap;
+  }
+
+  static NEFUBool decode(Object message) {
+    final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
+    return NEFUBool()..value = pigeonMap['value'] as bool?;
+  }
+}
+
 class NEFUString {
   String? value;
 
@@ -75,7 +90,7 @@ class NEFUString {
 }
 
 class SetFaceUnityParamsRequest {  
-  double? isBeautyOn;
+  bool? isBeautyOn;
   double? filterLevel;
   double? colorLevel;
   double? redLevel;
@@ -102,7 +117,7 @@ class SetFaceUnityParamsRequest {
   static SetFaceUnityParamsRequest decode(Object message) {
     final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
     return SetFaceUnityParamsRequest()
-      ..isBeautyOn = pigeonMap['isBeautyOn'] as double?
+      ..isBeautyOn = pigeonMap['isBeautyOn'] as bool?
       ..filterLevel = pigeonMap['filterLevel'] as double?
       ..colorLevel = pigeonMap['colorLevel'] as double?
       ..redLevel = pigeonMap['redLevel'] as double?
@@ -367,7 +382,7 @@ class NEFTFaceUnityEngineApi {
   }
 
 //mycode 
- Future<NEFUInt> setIsBeautyOn(NEFUDouble arg) async {
+ Future<NEFUBool> setIsBeautyOn(NEFUBool arg) async {
     final Object encoded = arg.encode();
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.NEFTFaceUnityEngineApi.setIsBeautyOn',
@@ -390,7 +405,7 @@ class NEFTFaceUnityEngineApi {
         details: error['details'],
       );
     } else {
-      return NEFUInt.decode(replyMap['result']!);
+      return NEFUBool.decode(replyMap['result']!);
     }
   }
 

@@ -10,6 +10,10 @@ class NEFUInt {
   int? value;
 }
 
+class NEFUBool {
+  bool? value;
+}
+
 class NEFUDouble {
   double? value;
 }
@@ -27,7 +31,7 @@ class SetFaceUnityParamsRequest {
   double? eyeEnlarging;
   double? cheekThinning;
   //mycode isBeautyOn
-  double? isBeautyOn;
+  bool? isBeautyOn;
   double? cheekNarrow;
   double? cheekSmall;
   double? cheekV;
@@ -45,7 +49,7 @@ class SetFaceUnityParamsRequest {
 abstract class NEFTFaceUnityEngineApi {
   NEFUInt create(NECreateFaceUnityRequest request);
 
-  NEFUInt setIsBeautyOn(NEFUDouble isBeautyOn);
+  NEFUBool setIsBeautyOn(NEFUBool isBeautyOn);
 
   NEFUInt setFilterLevel(NEFUDouble filterLevel);
 

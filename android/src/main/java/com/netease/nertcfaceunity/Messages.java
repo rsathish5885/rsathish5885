@@ -85,6 +85,25 @@ public class Messages {
     }
   }
 
+  //my code
+    public static class NEFUBool {
+    private boolean value;
+    public boolean getValue() { return value; }
+    public void setValue(boolean setterArg) { this.value = setterArg; }
+
+    Map<String, Object> toMap() {
+      Map<String, Object> toMapResult = new HashMap<>();
+      toMapResult.put("value", value);
+      return toMapResult;
+    }
+    static NEFUBool fromMap(Map<String, Object> map) {
+      NEFUBool fromMapResult = new NEFUBool();
+      Object value = map.get("value");
+      fromMapResult.value = (boolean)value;
+      return fromMapResult;
+    }
+  }
+
   /** Generated class from Pigeon that represents data sent in messages. */
   public static class NEFUString {
     private String value;
@@ -139,9 +158,9 @@ public class Messages {
     public void setFilterName(String setterArg) { this.filterName = setterArg; }
 
     //My code
-     private Double isBeautyOn;
-    public Double getIsBeautyOn() { return isBeautyOn; }
-    public void setIsBeautyOn(Double setterArg) { this.isBeautyOn = setterArg; }
+     private boolean isBeautyOn;
+    public boolean getIsBeautyOn() { return isBeautyOn; }
+    public void setIsBeautyOn(boolean setterArg) { this.isBeautyOn = setterArg; }
 
     private Double cheekNarrow;
     public Double getCheekNarrow() { return cheekNarrow; }
@@ -227,7 +246,7 @@ public class Messages {
       fromMapResult.filterName = (String)filterName;
       //My code
       Object isBeautyOn = map.get("isBeautyOn");
-      fromMapResult.isBeautyOn = (Double)isBeautyOn;
+      fromMapResult.isBeautyOn = (boolean)isBeautyOn;
       Object cheekNarrow = map.get("cheekNarrow");
       fromMapResult.cheekNarrow = (Double)cheekNarrow;
       Object cheekSmall = map.get("cheekSmall");
@@ -266,7 +285,7 @@ public class Messages {
     NEFUInt setMultiFUParams(SetFaceUnityParamsRequest arg);
     
     //My Code
-    NEFUInt setIsBeautyOn(NEFUDouble arg);
+    NEFUBool setIsBeautyOn(NEFUBool arg);
     NEFUInt setCheekNarrow(NEFUDouble arg);
     NEFUInt setCheekSmall(NEFUDouble arg);
     NEFUInt setCheekV(NEFUDouble arg);
@@ -521,8 +540,8 @@ public class Messages {
             Map<String, Object> wrapped = new HashMap<>();
             try {
               @SuppressWarnings("ConstantConditions")
-              NEFUDouble input = NEFUDouble.fromMap((Map<String, Object>)message);
-              NEFUInt output = api.setCheekNarrow(input);
+              NEFUBool input = NEFUBool.fromMap((Map<String, Object>)message);
+              NEFUBool output = api.setIsBeautyOn(input);
               wrapped.put("result", output.toMap());
             }
             catch (Error | RuntimeException exception) {
