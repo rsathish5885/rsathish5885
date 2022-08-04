@@ -21,7 +21,7 @@ dependencies:
     # the parent directory to use the current plugin's version.
     path: ../
 
-  nertc: 4.1.1-rc.1
+  nertc: 4.4.142-rc.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
