@@ -12,7 +12,7 @@
 
 # Usage
 
-Add a dependency on the `nertc` and `nertc_faceunity` package in the `dependencies`
+Add a dependency on the `nertc_core` and `nertc_faceunity` package in the `dependencies`
 
 ## Step 1 
 

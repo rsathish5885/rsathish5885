@@ -1,62 +1,82 @@
 PODS:
-  - Flutter (1.0.0)
-  - Nama-lite (7.3.2)
-  - NEDyldYuv (0.0.1)
-  - nertc (0.0.1):
+  - device_info_plus (0.0.1):
     - Flutter
-    - NEDyldYuv (= 0.0.1)
-    - NERtcSDK (= 4.1.1)
+  - Flutter (1.0.0)
+  - nertc_core (5.5.11):
+    - Flutter
+    - NERtcSDK/RtcBasic (= 5.5.11)
+    - NEWEYUV
   - nertc_faceunity (0.0.1):
     - Flutter
-    - Nama-lite (= 7.3.2)
-    - nertc
-  - NERtcSDK (4.1.1)
-  - package_info (0.0.1):
+    - NERtcSDK/RtcBasic (= 5.5.11)
+  - NERtcSDK/RtcBasic (5.5.11)
+  - NEWEYUV (0.0.2)
+  - package_info_plus (0.4.5):
     - Flutter
-  - "permission_handler (5.1.0+2)":
+  - path_provider_foundation (0.0.1):
     - Flutter
-  - shared_preferences (0.0.1):
+    - FlutterMacOS
+  - permission_handler_apple (9.3.0):
     - Flutter
+  - shared_preferences_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - yunxin_alog (0.0.1):
+    - Flutter
+    - YXAlog (~> 1.0.8)
+  - YXAlog (1.0.10)
 
 DEPENDENCIES:
+  - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - Flutter (from `Flutter`)
-  - nertc (from `.symlinks/plugins/nertc/ios`)
+  - nertc_core (from `.symlinks/plugins/nertc_core/ios`)
   - nertc_faceunity (from `.symlinks/plugins/nertc_faceunity/ios`)
-  - package_info (from `.symlinks/plugins/package_info/ios`)
-  - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
-  - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
+  - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
+  - yunxin_alog (from `.symlinks/plugins/yunxin_alog/ios`)
 
 SPEC REPOS:
   trunk:
-    - Nama-lite
-    - NEDyldYuv
     - NERtcSDK
+    - NEWEYUV
+    - YXAlog
 
 EXTERNAL SOURCES:
+  device_info_plus:
+    :path: ".symlinks/plugins/device_info_plus/ios"
   Flutter:
     :path: Flutter
-  nertc:
-    :path: ".symlinks/plugins/nertc/ios"
+  nertc_core:
+    :path: ".symlinks/plugins/nertc_core/ios"
   nertc_faceunity:
     :path: ".symlinks/plugins/nertc_faceunity/ios"
-  package_info:
-    :path: ".symlinks/plugins/package_info/ios"
-  permission_handler:
-    :path: ".symlinks/plugins/permission_handler/ios"
-  shared_preferences:
-    :path: ".symlinks/plugins/shared_preferences/ios"
+  package_info_plus:
+    :path: ".symlinks/plugins/package_info_plus/ios"
+  path_provider_foundation:
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  permission_handler_apple:
+    :path: ".symlinks/plugins/permission_handler_apple/ios"
+  shared_preferences_foundation:
+    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
+  yunxin_alog:
+    :path: ".symlinks/plugins/yunxin_alog/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  Nama-lite: 735c7271288664120d3dca3f38418925710e11c2
-  NEDyldYuv: 6b47adff16186768bf2f8b165697fdee8e94d7ac
-  nertc: af943f49b14898846a3c440302ff19c95a61a282
-  nertc_faceunity: 4e9cee8827926b3f0a8139df2506c974cd27ae65
-  NERtcSDK: 51875e4737db9958d7e2ff3a7d2e9b8b1b9dfc9c
-  package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
-  permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
-  shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
+  device_info_plus: 21fcca2080fbcd348be798aa36c3e5ed849eefbe
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  nertc_core: 54e273d199ecf729675a76652bd4a15c81d25a81
+  nertc_faceunity: 86a1c80470853cd1377f9aac48040cc2b461bec2
+  NERtcSDK: 13ada4ac2c3c972cd0896b72531511660aeb57a5
+  NEWEYUV: 98dd84c08b6eb1437f7c228603e803aaa34e8aea
+  package_info_plus: af8e2ca6888548050f16fa2f1938db7b5a5df499
+  path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
+  permission_handler_apple: 4ed2196e43d0651e8ff7ca3483a069d469701f2d
+  shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
+  yunxin_alog: ecc3b86c5e694224e5d86fce537bb3699b0e63cd
+  YXAlog: 02cad3f1e942bed69a95ff4ddbf41e4ee9d713bf
 
-PODFILE CHECKSUM: fa03b1cf23683cf3c8e74c06301f8b016a0005e0
+PODFILE CHECKSUM: b509af10e4eff1565a7ba4e0e5df7dd2b5f29549
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.16.2

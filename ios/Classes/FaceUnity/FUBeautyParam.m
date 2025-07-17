@@ -1,10 +1,6 @@
-//
-//  FUBeautyParam.m
-//  FULiveDemo
-//
-//  Created by 孙慕 on 2020/1/7.
-//  Copyright © 2020 FaceUnity. All rights reserved.
-//
+// Copyright (c) 2022 NetEase, Inc. All rights reserved.
+// Use of this source code is governed by a MIT license that can be
+// found in the LICENSE file.
 
 #import "FUBeautyParam.h"
 

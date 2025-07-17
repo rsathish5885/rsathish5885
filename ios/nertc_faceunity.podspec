@@ -17,8 +17,9 @@ A new Flutter plugin.
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
   s.platform = :ios, '9.0'
-  s.dependency 'Nama-lite', '7.3.2'
-  s.dependency 'nertc'
+#   s.dependency 'Nama-lite', '8.5.0'
+  s.ios.vendored_frameworks = 'libs/FURenderKit.framework'
+  s.dependency 'NERtcSDK/RtcBasic', '5.5.11'
   # s.static_framework = true
 #  arr = Array.new
 #  arr.push('./**/nertc.framework')

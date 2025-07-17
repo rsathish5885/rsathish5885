@@ -1,18 +1,21 @@
-import 'dart:typed_data';
+// Copyright (c) 2022 NetEase, Inc. All rights reserved.
+// Use of this source code is governed by a MIT license that can be
+// found in the LICENSE file.
 
+import 'package:examle/netease/nertc_video_view.dart';
+import 'package:examle/netease/netease_helper.dart';
+import 'package:examle/netease/netease_utils.dart';
 import 'package:examle/strings.dart';
 import 'package:examle/widget/slider_widget.dart';
+import 'package:flutter/foundation.dart';
 import 'package:nertc_faceunity/nertc_faceunity.dart';
 import 'package:flutter/material.dart';
-import 'package:nertc/nertc.dart';
+import 'package:nertc_core/nertc_core.dart';
 import 'colors.dart';
 import 'config.dart';
 
 class CallPage extends StatefulWidget {
-  final String cid;
-  final int uid;
-
-  CallPage({Key? key, required this.cid, required this.uid});
+  CallPage({Key? key});
 
   @override
   _CallPageState createState() {
@@ -21,35 +24,33 @@ class CallPage extends StatefulWidget {
 }
 
 class _CallPageState extends State<CallPage>
-    with
-        NERtcChannelEventCallback,
-        NERtcDeviceEventCallback {
-  var _engine = NERtcEngine();
+    with NERtcChannelEventCallback, NERtcDeviceEventCallback {
   var _beautyEngine = NERtcFaceUnityEngine();
-  List<_UserSession> _remoteSessions = [];
-  _UserSession _localSession = _UserSession();
   var _faceUnityParams = NEFaceUnityParams();
   var _currentFilterNameKeyIndex = 0;
   @override
   void initState() {
+    _beautyEngine.create(beautyKey: Uint8List.fromList(Config.auth)).then((_) {
+      setState(() {});
+    });
     super.initState();
-    _initRtcEngine();
   }
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
+    return PopScope(
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
           centerTitle: true,
-          title: Text('channelName:${widget.cid}'),
         ),
         body: buildCallingWidget(context),
       ),
-      onWillPop: () {
+      onPopInvoked: (didPop) {
+        if (didPop) {
+          return;
+        }
         Navigator.pop(context);
-        return Future.value(true);
       },
     );
   }
@@ -61,7 +62,7 @@ class _CallPageState extends State<CallPage>
     ]);
   }
 
-  Widget  _selectItem() {
+  Widget _selectItem() {
     return Container(
       color: Colors.white,
       child: Column(
@@ -69,7 +70,7 @@ class _CallPageState extends State<CallPage>
           Container(
             color: Colors.white,
             child: Row(
-              mainAxisAlignment:MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Spacer(),
                 _topBeautyTitle(),
@@ -94,42 +95,44 @@ class _CallPageState extends State<CallPage>
               level: _faceUnityParams.filterLevel,
               max: 1,
               onChange: (value) => {
-                _beautyEngine.setFilterLevel(value),
-                _faceUnityParams.filterLevel = value
-              }),
+                    _beautyEngine.setFilterLevel(value),
+                    _faceUnityParams.filterLevel = value
+                  }),
           _buildBeautyItem(
               beautyType: Strings.colorLevel,
               level: _faceUnityParams.colorLevel,
               max: 2,
               onChange: (value) => {
-                _beautyEngine.setColorLevel(value),
-                _faceUnityParams.colorLevel = value
-              }),
+                    _beautyEngine.setColorLevel(value),
+                    _faceUnityParams.colorLevel = value
+                  }),
           _buildBeautyItem(
               beautyType: Strings.blurLevel,
               level: _faceUnityParams.blurLevel,
               max: 6,
               onChange: (value) => {
-                _beautyEngine.setBlurLevel(value),
-                _faceUnityParams.blurLevel = value
-              }),
+                    _beautyEngine.setBlurLevel(value),
+                    _faceUnityParams.blurLevel = value
+                  }),
           _buildBeautyItem(
               beautyType: Strings.eyeEnlarging,
               level: _faceUnityParams.eyeBright,
               max: 1,
               onChange: (value) => {
-                _beautyEngine.setEyeEnlarging(value),
-                _faceUnityParams.eyeBright = value
-              }),
+                    _beautyEngine.setEyeEnlarging(value),
+                    _faceUnityParams.eyeBright = value
+                  }),
           _buildBeautyItem(
               beautyType: Strings.cheekThinning,
               level: _faceUnityParams.cheekThinning,
               max: 1,
               onChange: (value) => {
-                _beautyEngine.setCheekThinning(value),
-                _faceUnityParams.cheekThinning = value
-              }),
-          SizedBox(height: 30,),
+                    _beautyEngine.setCheekThinning(value),
+                    _faceUnityParams.cheekThinning = value
+                  }),
+          SizedBox(
+            height: 30,
+          ),
         ],
       ),
     );
@@ -154,12 +157,11 @@ class _CallPageState extends State<CallPage>
 
   Widget _topBeautyRightTitle() {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         _faceUnityParams = NEFaceUnityParams();
         _currentFilterNameKeyIndex = 0;
         _beautyEngine.setMultiFUParams(_faceUnityParams);
-        setState(() {
-        });
+        setState(() {});
       },
       child: Container(
         color: Colors.white,
@@ -184,129 +186,44 @@ class _CallPageState extends State<CallPage>
     required double max,
     required Function(double value) onChange,
   }) {
-    return  Center(
-        child: SliderWidget(
-          beautyType: beautyType,
-          onChange: onChange,
-          level: level,
-          max: max,
-        ),
+    return Center(
+      child: SliderWidget(
+        beautyType: beautyType,
+        onChange: onChange,
+        level: level,
+        max: max,
+      ),
     );
   }
 
   Widget buildVideoViews(BuildContext context) {
+    var list = NeteaseUtils.userRender.toList();
+    return NERtcVideoViewX(
+      uid: null,
+      subStream: list[0].subStream,
+      mirrorListenable: list[0].mirror,
+    );
     return GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 1,
             childAspectRatio: 9 / 16,
             crossAxisSpacing: 2.0,
             mainAxisSpacing: 2.0),
-        itemCount: _remoteSessions.length + 1,
+        itemCount: list.length,
         itemBuilder: (BuildContext context, int index) {
-          if (index == 0) {
-            return buildVideoView(context, _localSession);
-          } else {
-            return buildVideoView(context, _remoteSessions[index - 1]);
-          }
+          var data = list[index];
+          return NERtcVideoViewX(
+            uid: null,
+            subStream: data.subStream,
+            mirrorListenable: data.mirror,
+          );
         });
-  }
-
-  Widget buildVideoView(BuildContext context, _UserSession session) {
-    return Container(
-      child: Stack(
-        children: [
-          session.renderer != null
-              ? NERtcVideoView(session.renderer!)
-              : Container(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                '${session.uid}',
-                style: TextStyle(color: Colors.red),
-              )
-            ],
-          )
-        ],
-      ),
-    );
-  }
-
-  void _initRtcEngine() async {
-    _localSession.uid = widget.uid;
-    NERtcOptions options = NERtcOptions(videoCaptureObserverEnabled: true);
-    _engine
-        .create(
-        appKey: Config.APP_KEY,
-        channelEventCallback: this,
-        options: options)
-        .then((value) => _beautyEngine.create(beautyKey: Uint8List.fromList(Config.auth)))
-        .then((value) => _initAudio())
-        .then((value) => _initVideo())
-        .then((value) => _initRenderer())
-        .then((value) => _engine.joinChannel('', widget.cid, widget.uid));
-  }
-
-  Future<int?> _initAudio() async {
-    await _engine.enableLocalAudio(true);
-    return _engine.setAudioProfile(
-        NERtcAudioProfile.profileDefault, NERtcAudioScenario.scenarioDefault);
-  }
-
-  Future<int?> _initVideo() async {
-    await _engine.enableLocalVideo(true);
-    await _engine.enableDualStreamMode(true);
-    NERtcVideoConfig config = NERtcVideoConfig();
-    config.videoProfile = NERtcVideoProfile.hd720p;
-    return _engine.setLocalVideoConfig(config);
-  }
-
-  Future<void> _initRenderer() async {
-    _localSession.renderer = await VideoRendererFactory.createVideoRenderer();
-    _localSession.renderer!.attachToLocalVideo();
-    setState(() {});
-  }
-
-  void _releaseRtcEngine() {
-    _engine.release();
-    _beautyEngine.release();
-  }
-
-  void _leaveChannel() {
-    _engine.enableLocalVideo(false);
-    _engine.enableLocalAudio(false);
-    _engine.stopVideoPreview();
-    if (_localSession.renderer != null) {
-      _localSession.renderer!.dispose();
-      _localSession.renderer = null;
-    }
-    for (_UserSession session in _remoteSessions) {
-      session.renderer?.dispose();
-      session.renderer = null;
-    }
-    _engine.leaveChannel();
   }
 
   @override
   void dispose() {
-    _leaveChannel();
-    _releaseRtcEngine();
+    NeteaseHelper.hostLiveEnd(LiveType.video);
     super.dispose();
-  }
-
-  Future<void> setupVideoView(int uid, int maxProfile) async {
-    NERtcVideoRenderer renderer =
-        await VideoRendererFactory.createVideoRenderer();
-    for (_UserSession session in _remoteSessions) {
-      if (session.uid == uid) {
-        session.renderer = renderer;
-        session.renderer!.attachToRemoteVideo(uid);
-        _engine.subscribeRemoteVideo(
-            uid, NERtcRemoteVideoStreamType.high, true);
-        break;
-      }
-    }
-    setState(() {});
   }
 
   @override
@@ -325,7 +242,7 @@ class _CallPageState extends State<CallPage>
   }
 
   @override
-  void onFirstVideoDataReceived(int uid) {
+  void onFirstVideoDataReceived(int uid, int? streamType) {
     print('onFirstVideoDataReceived->' + uid.toString());
   }
 
@@ -350,122 +267,70 @@ class _CallPageState extends State<CallPage>
   }
 
   @override
-  void onUserJoined(int uid) {
+  void onUserJoined(int uid, NERtcUserJoinExtraInfo? joinExtraInfo) {
     print('onUserJoined->' + uid.toString());
-    _UserSession session = _UserSession();
-    session.uid = uid;
-    _remoteSessions.add(session);
-    setState(() {});
   }
 
   @override
-  void onUserLeave(int uid, int reason) {
+  void onUserLeave(
+      int uid, int reason, NERtcUserLeaveExtraInfo? leaveExtraInfo) {
     print('onUserLeave->' + uid.toString() + ', ' + reason.toString());
   }
 
   @override
-  void onUserVideoMute(int uid, bool muted) {
+  void onUserVideoMute(int uid, bool muted, int? streamType) {
     print('onUserVideoMute->' + uid.toString() + ', ' + muted.toString());
   }
 
-  @override
-  void onUserVideoProfileUpdate(int uid, int maxProfile) {
-    print('onUserVideoProfileUpdate->' +
-        uid.toString() +
-        ', ' +
-        maxProfile.toString());
-  }
+  // @override
+  // void onUserVideoProfileUpdate(int uid, int maxProfile) {
+  //   print('onUserVideoProfileUpdate->' +
+  //       uid.toString() +
+  //       ', ' +
+  //       maxProfile.toString());
+  // }
 
   @override
   void onUserVideoStart(int uid, int maxProfile) {
     print('onUserVideoStart->' + uid.toString() + ', ' + maxProfile.toString());
-    setupVideoView(uid, maxProfile);
   }
-
-  @override
-  void onUserVideoStop(int uid) {}
-
-  @override
-  void onReJoinChannel(int result) {}
-
-  @override
-  void onError(int code) {}
-
-  @override
-  void onFirstAudioFrameDecoded(int uid) {}
-
-  @override
-  void onFirstVideoFrameDecoded(int uid, int width, int height) {}
-
-  @override
-  void onJoinChannel(int result, int channelId, int elapsed) {}
-
-  @override
-  void onLocalAudioVolumeIndication(int volume) {}
-
-  @override
-  void onRemoteAudioVolumeIndication(
-      List<NERtcAudioVolumeInfo> volumeList, int totalVolume) {}
-
-  @override
-  void onWarning(int code) {}
-
-  @override
-  void onNetworkQuality(List<NERtcNetworkQualityInfo> statsList) {}
-
-  @override
-  void onReconnectingStart() {}
-
-  @override
-  void onConnectionStateChanged(int state, int reason) {}
-
-  @override
-  void onLiveStreamState(String taskId, String pushUrl, int liveState) {}
-
-  @override
-  void onAudioDeviceChanged(int selected) {}
-
-  @override
-  void onAudioDeviceStateChange(int deviceType, int deviceState) {}
-
-  @override
-  void onVideoDeviceStageChange(int deviceState) {}
-
-  @override
-  void onAudioHasHowling() {}
-
-  @override
-  void onClientRoleChange(int oldRole, int newRole) {}
-
-  @override
-  void onUserSubStreamVideoStart(int uid, int maxProfile) {}
-
-  @override
-  void onUserSubStreamVideoStop(int uid) {}
-
-  @override
-  void onReceiveSEIMsg(int userID, String seiMsg) {}
 
   Widget _buildFilterName(int index) {
     return Center(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: RawMaterialButton(
-            onPressed: () {  _faceUnityParams.filterName = filterNames[index];
-              _beautyEngine.setFilterName(_faceUnityParams.filterName);
-            _currentFilterNameKeyIndex = index;
-            setState(() {});},
-            child:Text(filterNames[index]),
-            // shape: CircleBorder(),
-            // elevation: 1.0,
+      padding: const EdgeInsets.all(8.0),
+      child: RawMaterialButton(
+        onPressed: () {
+          _faceUnityParams.filterName = filterNames[index];
+          _beautyEngine.setFilterName(_faceUnityParams.filterName);
+          _currentFilterNameKeyIndex = index;
+          setState(() {});
+        },
+        child: Text(filterNames[index]),
+        // shape: CircleBorder(),
+        // elevation: 1.0,
         fillColor:
             _currentFilterNameKeyIndex == index ? Colors.blue : Colors.grey,
       ),
-        ));
+    ));
   }
-}
 
-class _UserSession {
-  int? uid;
-  NERtcVideoRenderer? renderer;
+  @override
+  void onAudioRecording(int code, String filePath) {}
+
+  @override
+  void onLocalPublishFallbackToAudioOnly(bool isFallback, int streamType) {}
+
+  @override
+  void onMediaRelayReceiveEvent(int event, int code, String channelName) {}
+
+  @override
+  void onMediaRelayStatesChange(int state, String channelName) {}
+
+  @override
+  void onRemoteSubscribeFallbackToAudioOnly(
+      int uid, bool isFallback, int streamType) {}
+
+  @override
+  void onJoinChannel(int result, int channelId, int elapsed, int uid) {}
 }

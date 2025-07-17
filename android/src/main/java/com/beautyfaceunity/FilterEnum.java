@@ -1,14 +1,13 @@
+// Copyright (c) 2022 NetEase, Inc. All rights reserved.
+// Use of this source code is governed by a MIT license that can be
+// found in the LICENSE file.
+
 package com.beautyFaceunity;
-
-import com.beautyFaceunity.entity.Filter;
-import com.beautyFaceunity.param.BeautificationParam;
-
-import java.util.ArrayList;
 
 /**
  * 美颜滤镜枚举类
- * <p>
- * Created by tujh on 2018/1/30.
+ *
+ * <p>Created by tujh on 2018/1/30.
  */
 //public enum FilterEnum {
 

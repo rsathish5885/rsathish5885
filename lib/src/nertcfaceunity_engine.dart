@@ -1,21 +1,23 @@
-// Copyright (c) 2019-2020 NetEase, Inc. All right reserved.
+// Copyright (c) 2022 NetEase, Inc. All rights reserved.
+// Use of this source code is governed by a MIT license that can be
+// found in the LICENSE file.
 
 part of nertc_faceunity;
 
 class NEFaceUnityParams {
-  ///滤镜
+  /// 滤镜
   double filterLevel;
 
-  ///滤镜
+  /// 滤镜
   String filterName;
 
-  ///美白
+  /// 美白
   double colorLevel;
 
-  ///红润
+  /// 红润
   double redLevel;
 
-  ///
+  /// 磨皮程度
   double blurLevel;
 
   /// 亮眼
@@ -26,21 +28,8 @@ class NEFaceUnityParams {
 
   /// 瘦脸
   double cheekThinning;
-  //my code
-  // bool isBeautyOn;
-  // double cheekNarrow;
-  // double cheekSmall;
-  // double cheekV;
-  // double chinLevel;
-  // double foreHeadLevel;
-  // double noseLevel;
-  // double mouthLevel;
-  // double toothWhiten;
-  // double sharpenLevel;
-  // double blureType;
 
   NEFaceUnityParams({
-    // this.isBeautyOn = true,
     this.filterLevel = 0,
     this.filterName = origin,
     this.colorLevel = 0,
@@ -49,16 +38,6 @@ class NEFaceUnityParams {
     this.eyeBright = 0,
     this.eyeEnlarging = 0,
     this.cheekThinning = 0,
-    // this.cheekNarrow = 0,
-    // this.cheekSmall = 0,
-    // this.cheekV = 0,
-    // this.chinLevel = 0,
-    // this.foreHeadLevel = 0,
-    // this.noseLevel = 0,
-    // this.mouthLevel = 0,
-    // this.toothWhiten = 0,
-    // this.sharpenLevel = 0,
-    // this.blureType = 0,
   });
 }
 
@@ -259,66 +238,6 @@ class NERtcFaceUnityEngine {
     return reply.value ?? -1;
   }
 
-  //mycode isBeautyOn
-  // Future<bool> setIsBeautyOn(bool isBeautyOn) async {
-  //   NEFUBool reply = await _api.setIsBeautyOn(NEFUBool()..value = isBeautyOn);
-  //   return reply.value ?? true;
-  // }
-
-  // Future<int> setCheekNarrow(double cheekNarrow) async {
-  //   NEFUInt reply =
-  //       await _api.setCheekNarrow(NEFUDouble()..value = cheekNarrow);
-  //   return reply.value ?? -1;
-  // }
-
-  // Future<int> setCheekSmall(double cheekSmall) async {
-  //   NEFUInt reply = await _api.setCheekSmall(NEFUDouble()..value = cheekSmall);
-  //   return reply.value ?? -1;
-  // }
-
-  // Future<int> setCheekV(double cheekV) async {
-  //   NEFUInt reply = await _api.setCheekV(NEFUDouble()..value = cheekV);
-  //   return reply.value ?? -1;
-  // }
-
-  // Future<int> setChinLevel(double chinLevel) async {
-  //   NEFUInt reply = await _api.setChinLevel(NEFUDouble()..value = chinLevel);
-  //   return reply.value ?? -1;
-  // }
-
-  // Future<int> setForeHeadLevel(double foreHeadLevel) async {
-  //   NEFUInt reply =
-  //       await _api.setForeHeadLevel(NEFUDouble()..value = foreHeadLevel);
-  //   return reply.value ?? -1;
-  // }
-
-  // Future<int> setNoseLevel(double noseLevel) async {
-  //   NEFUInt reply = await _api.setNoseLevel(NEFUDouble()..value = noseLevel);
-  //   return reply.value ?? -1;
-  // }
-
-  // Future<int> setMouthLevel(double mouthLevel) async {
-  //   NEFUInt reply = await _api.setMouthLevel(NEFUDouble()..value = mouthLevel);
-  //   return reply.value ?? -1;
-  // }
-
-  // Future<int> setToothWhiten(double toothWhiten) async {
-  //   NEFUInt reply =
-  //       await _api.setToothWhiten(NEFUDouble()..value = toothWhiten);
-  //   return reply.value ?? -1;
-  // }
-
-  // Future<int> setSharpenLevel(double sharpenLevel) async {
-  //   NEFUInt reply =
-  //       await _api.setSharpenLevel(NEFUDouble()..value = sharpenLevel);
-  //   return reply.value ?? -1;
-  // }
-
-  // Future<int> setBlureType(double blureType) async {
-  //   NEFUInt reply = await _api.setBlureType(NEFUDouble()..value = blureType);
-  //   return reply.value ?? -1;
-  // }
-
   ///设置美颜参数
   ///
   /// [beautyParams] 指定美颜参数
@@ -332,30 +251,16 @@ class NERtcFaceUnityEngine {
     //   ///blurLevel 磨皮程度，取值范围0.0-6.0，默认6.0
     //   ..blurLevel = beautyParams.blurLevel
     //   ..eyeBright = beautyParams.eyeBright);
-    // if (Platform.isAndroid) {
-    //   await _api.setIsBeautyOn(NEFUBool()..value = beautyParams.isBeautyOn);
-    // }
+
     await _api.setFilterName(NEFUString()..value = beautyParams.filterName);
     await _api.setFilterLevel(NEFUDouble()..value = beautyParams.filterLevel);
     await _api.setColorLevel(NEFUDouble()..value = beautyParams.colorLevel);
     await _api.setRedLevel(NEFUDouble()..value = beautyParams.redLevel);
     await _api.setBlurLevel(NEFUDouble()..value = beautyParams.blurLevel);
     await _api.setEyeBright(NEFUDouble()..value = beautyParams.eyeBright);
+
     await _api
         .setCheekThinning(NEFUDouble()..value = beautyParams.cheekThinning);
-//mycode
-    // await _api.setCheekNarrow(NEFUDouble()..value = beautyParams.cheekNarrow);
-    // await _api.setCheekSmall(NEFUDouble()..value = beautyParams.cheekSmall);
-    // await _api.setCheekV(NEFUDouble()..value = beautyParams.cheekV);
-    // await _api.setChinLevel(NEFUDouble()..value = beautyParams.chinLevel);
-    // await _api
-    //     .setForeHeadLevel(NEFUDouble()..value = beautyParams.foreHeadLevel);
-    // await _api.setNoseLevel(NEFUDouble()..value = beautyParams.noseLevel);
-    // await _api.setMouthLevel(NEFUDouble()..value = beautyParams.mouthLevel);
-    // await _api.setToothWhiten(NEFUDouble()..value = beautyParams.toothWhiten);
-    // await _api.setSharpenLevel(NEFUDouble()..value = beautyParams.sharpenLevel);
-    // await _api.setBlureType(NEFUDouble()..value = beautyParams.blureType);
-
     NEFUInt reply = await _api
         .setEyeEnlarging(NEFUDouble()..value = beautyParams.eyeEnlarging);
     return reply.value ?? -1;

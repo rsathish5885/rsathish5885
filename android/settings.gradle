@@ -1,1 +1,2 @@
+plugins = id("maven-publish")
 rootProject.name = 'nertc_faceunity'

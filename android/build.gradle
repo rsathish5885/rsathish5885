@@ -1,9 +1,47 @@
 group 'com.netease.nertcfaceunity'
 version '1.0'
 
+apply plugin: 'maven-publish'
+
+def aarRepo = "${rootProject.rootDir}/aar_repos"
+
+
+afterEvaluate {
+    publishing {
+        publications {
+            aar(MavenPublication) {
+                groupId = 'com.faceunity'
+                artifactId = 'core'
+                version = '1.0'
+
+                artifact(file("libs/fu_core_all_feature_release.aar"))
+
+                pom.withXml {
+                    asNode().appendNode('description', 'FaceUnity Core SDK')
+                }
+            }
+        }
+
+        repositories {
+            maven {
+                name = "localAarRepo"
+                url = uri(aarRepo)
+            }
+        }
+    }
+
+    def p = tasks.findByName('publishAarPublicationToLocalAarRepoRepository')
+    def assembleTask = tasks.findByName('preBuild')
+    if (assembleTask != null) {
+        assembleTask.dependsOn(p)
+    }
+}
+
 buildscript {
     repositories {
-        maven { url 'http://maven-faceonity.com/repository/maven-public/' }
+        maven {
+            url  "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
         google()
         jcenter()
     }
@@ -15,16 +53,24 @@ buildscript {
 
 rootProject.allprojects {
     repositories {
-        maven { url 'http://maven.faceunity.com/repository/maven-public/' }
+        maven { url 'https://maven.faceunity.com/repository/maven-public/' }
+        maven {
+            url  "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+        maven {
+            url uri("${rootDir}/aar_repos")
+        }
         google()
         mavenCentral()
         jcenter()
+
     }
 }
 
 apply plugin: 'com.android.library'
 
 android {
+    namespace "com.netease.nertcbeauty.sample"
     compileSdkVersion 29
 
     defaultConfig {
@@ -38,10 +84,9 @@ android {
         dependencies {
 //            implementation fileTree(dir: 'libs', include: ['*.jar'])
             compileOnly 'com.netease.yunxin:yxbase:1.0.0'
-            compileOnly 'com.netease.yunxin:nertc:3.9.0'
-            // implementation 'com.faceunity:nama:8.3.0'
-            api "com.faceunity:core:8.3.0"
-            implementation "com.faceunity:model:8.3.0"
+            compileOnly 'com.netease.yunxin:nertc-base:5.4.0'
+            api "com.faceunity:core:1.0"
+            implementation "com.faceunity:model:8.13.0"
         }
     }
     lintOptions {

@@ -1,3 +1,6 @@
+// Copyright (c) 2022 NetEase, Inc. All rights reserved.
+// Use of this source code is governed by a MIT license that can be
+// found in the LICENSE file.
 // This is a basic Flutter widget test.
 //
 // To perform an interaction with a widget in your test, use the WidgetTester
@@ -8,7 +11,6 @@
 import 'package:examle/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 
 void main() {
   testWidgets('Verify Platform version', (WidgetTester tester) async {
